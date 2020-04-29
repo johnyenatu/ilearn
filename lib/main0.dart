@@ -4,16 +4,32 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:ilearn/localization/app_translations.dart';
 import 'package:ilearn/localization/application.dart';
 import 'package:ilearn/localization/appt_translations_delegate.dart';
-import 'package:ilearn/pages/student/StudentHome.dart';
 import 'package:ilearn/utils/LanguageFile.dart';
 import 'package:ilearn/utils/RouteLink.dart';
 import 'package:ilearn/utils/SharedPreferenccHelper.dart';
 import 'package:ilearn/utils/ThemeUtility.dart';
 import 'package:theme_provider/theme_provider.dart';
 import 'package:flutter/rendering.dart';
-void main() => runApp(MyApp());
+void main() => runApp(My());
+
+class My extends StatelessWidget {
 
 
+  @override
+  Widget build(BuildContext context) {
+    return ThemeProvider(
+      child: ThemeConsumer(
+        child: Builder(
+          builder: (themeContext) => MaterialApp(
+           // theme: ThemeProvider.themeOf(themeContext).data,
+            title: 'Material App',
+            home: MyApp(),
+          ),
+        ),
+      ),
+    );
+  }
+}
 
 class MyApp extends StatefulWidget {
   @override
@@ -50,14 +66,9 @@ class _MyAppState extends State<MyApp> {
 //        }
 //      },
       themes:  ThemeUtility.getThemes(),
-      
+      child: ThemeConsumer(
         child: MaterialApp(
-          routes: {
-            RouteLink.ROUTE_STUDENT:(context)=>ThemeConsumer(child: StudentHome()),
-          },
-          home: ThemeConsumer(
-            child: HomePage(
-            ),
+          home: HomePage(
           ),
           localizationsDelegates: [
             _newLocaleDelegate,
@@ -72,7 +83,7 @@ class _MyAppState extends State<MyApp> {
           ],
 
         ),
-       
+      ),
 
     );
   }
@@ -106,7 +117,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return ThemeProvider(
       child: Scaffold(
-      drawer:_buildDrawer(context),// _buildDrawer(context),
+      drawer:ThemeConsumer(child: _buildDrawer(context)),// _buildDrawer(context),
    //   drawer:
         appBar: AppBar(title: Text("Example App")),
         body: Center(
@@ -141,7 +152,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
        floatingActionButton: buildBoomMenu(),
-      )
+      ),
     );
   }
   BoomMenu buildBoomMenu() {
@@ -201,7 +212,7 @@ class _HomePageState extends State<HomePage> {
 Widget _buildDrawer(BuildContext context) {
   //  final String image = images[0];ing
   final TextStyle tStyle = TextStyle(color: active, fontSize: 16.0);
-  //ThemeProvider.controllerOf(context).nextTheme();
+  ThemeProvider.controllerOf(context).nextTheme();
   //getnames();
  // builder: (_) => ThemeConsumer(child: ThemeDialog());
   return ClipPath(
@@ -309,39 +320,37 @@ Widget _buildDrawer(BuildContext context) {
                         onTap: () {
                           // _showLanguageChangeDailog(context);
                           // Navigator.push(context, Route RouteLink.ROUTE_FILTER_CATEGORY)
-                         Navigator.pushNamed(context, RouteLink.ROUTE_STUDENT);
+                       //   Navigator.pushNamed(context, RouteLink.ROUTE_FILTER_CATEGORY);
                         },
                       ),
 
                     ),
                     _buildDivider(),
-                    ThemeConsumer(
-                      child: Container(
-                        alignment: Alignment.centerLeft,
-                        child: GestureDetector(
-                          child: Row(children: [
-                            Icon(
-                              Icons.language,
-                              color: active,
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      child: GestureDetector(
+                        child: Row(children: [
+                          Icon(
+                            Icons.language,
+                            color: active,
 
-                            ),
-                            SizedBox(width: 10.0),
-                            Text(
-                                 'Themes'
-                            ),
-                            Spacer(),
+                          ),
+                          SizedBox(width: 10.0),
+                          Text(
+                               'Themes'
+                          ),
+                          Spacer(),
 
-                          ],),
-                          onTap: () {
-                           // _showLanguageChangeDailog(context);
-                            //ThemeProvider.controllerOf(context).nextTheme;
-                            showDialog(
-                                context: context,
-                                builder: (_) => ThemeConsumer(child: ThemeDialog()));
-                          },
-                        ),
-
+                        ],),
+                        onTap: () {
+                         // _showLanguageChangeDailog(context);
+                          ThemeProvider.controllerOf(context).nextTheme;
+                          showDialog(
+                              context: context,
+                              builder: (_) => ThemeConsumer(child: ThemeDialog()));
+                        },
                       ),
+
                     ),
                     _buildDivider(),
                     Container(
@@ -402,24 +411,22 @@ Divider _buildDivider() {
 
 Widget _buildRow(IconData icon, String title, {bool showBadge = false}) {
   final TextStyle tStyle = TextStyle(color: active, fontSize: 16.0);
-  return ThemeConsumer(
-    child: Container(
-      padding: const EdgeInsets.symmetric(vertical: 5.0),
-      child: Row(children: [
-        Icon(
-          icon,
-          color: active,
+  return Container(
+    padding: const EdgeInsets.symmetric(vertical: 5.0),
+    child: Row(children: [
+      Icon(
+        icon,
+        color: active,
 
-        ),
-        SizedBox(width: 10.0),
-        Text(
-          title,
-          style: tStyle,
-        ),
-        Spacer(),
+      ),
+      SizedBox(width: 10.0),
+      Text(
+        title,
+        style: tStyle,
+      ),
+      Spacer(),
 
-      ]),
-    ),
+    ]),
   );
 }
 
@@ -528,7 +535,7 @@ class SecondPage extends StatelessWidget {
       body: Center(
         child: RaisedButton(
           child: Text("Next Theme"),
-          //onPressed:() => ThemeProvider.controllerOf(context).nextTheme,
+          onPressed:() => ThemeProvider.controllerOf(context).nextTheme,
         ),
 
       ),

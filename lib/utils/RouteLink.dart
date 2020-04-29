@@ -4,6 +4,19 @@ class RouteLink {
   static String ROUTE_FORGET_PASSWORD = '/pages/customer/forgetpassword';
   static String ROUTE_REGISTER_CUSTOMER = '/pages/customer/register';
 
+
+
+
+  static String ROUTE_STUDENT='/pages/student/studenthome';
+
+
+
+
+
+
+
+
+
   //cateogy
   static String ROUTE_UPDATE_CATEGORY = 'pages/category/updatecategory';
   static String ROUTE_FILTER_CATEGORY = 'pages/category/filtercategory';
