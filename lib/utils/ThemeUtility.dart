@@ -38,4 +38,19 @@ class ThemeUtility {
     themes.add(AppTheme.light());
     return themes;
   }
+  static AppTheme getCurrentThemeWithId(String themeid){
+    List<AppTheme> themes= [];
+AppTheme currentTheme=AppTheme.light();
+    themes.add(customAppTheme());
+    themes.add(customAppTheme2());
+    themes.add(AppTheme.dark());
+    themes.add(AppTheme.light());
+   themes.forEach((t)=>{
+     if(t.id==themeid){
+       currentTheme=t,
+
+     }
+   });
+   return currentTheme;
+  }
 }

@@ -5,6 +5,8 @@ import 'package:ilearn/localization/app_translations.dart';
 import 'package:ilearn/localization/application.dart';
 import 'package:ilearn/localization/appt_translations_delegate.dart';
 import 'package:ilearn/pages/student/StudentHome.dart';
+import 'package:ilearn/pages/student/StudentHome.dart';
+import 'package:ilearn/pages/teacher/TeacherHome.dart';
 import 'package:ilearn/utils/LanguageFile.dart';
 import 'package:ilearn/utils/RouteLink.dart';
 import 'package:ilearn/utils/SharedPreferenccHelper.dart';
@@ -104,41 +106,13 @@ class _HomePageState extends State<HomePage> {
   };
   @override
   Widget build(BuildContext context) {
-    return ThemeProvider(
+    return ThemeConsumer(
       child: Scaffold(
       drawer:_buildDrawer(context),// _buildDrawer(context),
    //   drawer:
-        appBar: AppBar(title: Text("Example App")),
+        appBar: AppBar(title: Text('iLearn')),
         body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              RaisedButton(
-                child: Text("Next Theme"),
-                onPressed: () => ThemeProvider.controllerOf(context).nextTheme,
-              ),
-              RaisedButton(
-                child: Text("Theme Dialog"),
-                onPressed: () {
-                  showDialog(
-                      context: context,
-                      builder: (_) => ThemeConsumer(child: ThemeDialog()));
-                   // ThemeProvider.themeOf(context).data=Th,
-                },
-              ),
-              RaisedButton(
-                child: Text("Second Screen"),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => ThemeConsumer(child: SecondPage()),
-                    ),
-                  );
-                },
-              ),
-            ],
-          ),
+          child: Text('Welcome to iLearn'),
         ),
        floatingActionButton: buildBoomMenu(),
       )
@@ -215,7 +189,7 @@ Widget _buildDrawer(BuildContext context) {
           decoration: BoxDecoration(
               color: Colors.white, boxShadow: [BoxShadow(color: Colors.black45)]),
           width: 300,
-          child: ThemeConsumer(
+
             child: SafeArea(
               child: SingleChildScrollView(
                 child: Column(
@@ -271,18 +245,19 @@ Widget _buildDrawer(BuildContext context) {
 
                           ),
                           SizedBox(width: 10.0),
-                          Text(
-                              AppTranslations.of(context).text(
-                                  LanguageFile.WORK_PLACE),
+                          Text('Teacher',
                               style: tStyle
                           ),
                           Spacer(),
 
                         ],),
                         onTap: () {
-                          // _showLanguageChangeDailog(context);
-                          // Navigator.push(context, Route RouteLink.ROUTE_FILTER_CATEGORY)
-                        //  Navigator.pushNamed(context, RouteLink.ROUTE_FILTER_REGION);
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => ThemeConsumer(child:TeacherHome() ),
+                            ),
+                          );
                         },
                       )),
 
@@ -299,17 +274,19 @@ Widget _buildDrawer(BuildContext context) {
                           ),
                           SizedBox(width: 10.0),
                           Text(
-                              AppTranslations.of(context).text(
-                                  LanguageFile.CATEGORY),
+                              'Student',
                               style: tStyle
                           ),
                           Spacer(),
 
                         ],),
                         onTap: () {
-                          // _showLanguageChangeDailog(context);
-                          // Navigator.push(context, Route RouteLink.ROUTE_FILTER_CATEGORY)
-                         Navigator.pushNamed(context, RouteLink.ROUTE_STUDENT);
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => ThemeConsumer(child:StudentHome() ),
+                            ),
+                          );
                         },
                       ),
 
@@ -388,7 +365,7 @@ Widget _buildDrawer(BuildContext context) {
             ),
           ),
         ),
-      ),
+
 
   );
 }
@@ -402,8 +379,7 @@ Divider _buildDivider() {
 
 Widget _buildRow(IconData icon, String title, {bool showBadge = false}) {
   final TextStyle tStyle = TextStyle(color: active, fontSize: 16.0);
-  return ThemeConsumer(
-    child: Container(
+  return   Container(
       padding: const EdgeInsets.symmetric(vertical: 5.0),
       child: Row(children: [
         Icon(
@@ -419,7 +395,7 @@ Widget _buildRow(IconData icon, String title, {bool showBadge = false}) {
         Spacer(),
 
       ]),
-    ),
+
   );
 }
 
@@ -512,28 +488,4 @@ Future<void> _showLanguageChangeDailog(BuildContext context) async {
       AppTranslations.load(locale);
     });
   }
-}
-class SecondPage extends StatelessWidget {
-
-  const SecondPage({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Second Screen"),
-      ),
-      body: Center(
-        child: RaisedButton(
-          child: Text("Next Theme"),
-          //onPressed:() => ThemeProvider.controllerOf(context).nextTheme,
-        ),
-
-      ),
-              //floatingActionButton: buildBoomMenu(),
-    );
-  }
-
 }

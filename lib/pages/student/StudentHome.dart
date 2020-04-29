@@ -1,30 +1,36 @@
-
 import 'package:flutter/material.dart';
-import 'package:theme_provider/theme_provider.dart';
+import 'package:ilearn/pages/student/Assignment.dart';
+import 'package:ilearn/pages/student/StudentResource.dart';
 
 
-class StudentHome extends StatefulWidget {
 
-  const StudentHome({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  _StudentHomeState createState() => _StudentHomeState();
-}
-
-class _StudentHomeState extends State<StudentHome> {
+class StudentHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Student Home'),
-      ),
-      body: RaisedButton(
-        child: Text("Next Theme"),
-     onPressed:() => ThemeProvider.controllerOf(context).nextTheme,
-    ),
+      body: DefaultTabController(
+        length: 2,
+        child: Scaffold(
+          appBar: AppBar(
+            bottom: TabBar(
+              tabs: [
 
+                Tab(icon: Icon(Icons.receipt),
+                text: 'Resourece',),
+                Tab(icon: Icon(Icons.assessment),
+                text: 'Assignment',),
+              ],
+            ),
+            title: Text('Student Page'),
+          ),
+          body: TabBarView(
+            children: [
+              StudentAssignment(),
+              StudentResource(),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
