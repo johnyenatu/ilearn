@@ -7,6 +7,7 @@ import 'package:ilearn/localization/appt_translations_delegate.dart';
 import 'package:ilearn/pages/student/StudentHome.dart';
 import 'package:ilearn/pages/student/StudentHome.dart';
 import 'package:ilearn/pages/teacher/TeacherHome.dart';
+import 'package:ilearn/pages/teacher/TeacherRegister.dart';
 import 'package:ilearn/utils/LanguageFile.dart';
 import 'package:ilearn/utils/RouteLink.dart';
 import 'package:ilearn/utils/SharedPreferenccHelper.dart';
@@ -22,7 +23,6 @@ class MyApp extends StatefulWidget {
   _MyAppState createState() => _MyAppState();
 
 }
-
 class _MyAppState extends State<MyApp> {
   AppTranslationsDelegate _newLocaleDelegate;
 
@@ -240,7 +240,7 @@ Widget _buildDrawer(BuildContext context) {
                       child: GestureDetector(
                         child: Row(children: [
                           Icon(
-                            Icons.location_city,
+                            Icons.people_outline,
                             color: active,
 
                           ),
@@ -255,11 +255,69 @@ Widget _buildDrawer(BuildContext context) {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (_) => ThemeConsumer(child:TeacherHome() ),
+                              builder: (_) => ThemeConsumer(child:TeacherRegister() ),
                             ),
                           );
                         },
                       )),
+
+                    ),
+                    _buildDivider(),
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      child:ThemeConsumer(
+                          child: GestureDetector(
+                            child: Row(children: [
+                              Icon(
+                                Icons.people,
+                                color: active,
+
+                              ),
+                              SizedBox(width: 10.0),
+                              Text('Parent',
+                                  style: tStyle
+                              ),
+                              Spacer(),
+
+                            ],),
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => ThemeConsumer(child:TeacherHome() ),
+                                ),
+                              );
+                            },
+                          )),
+
+                    ),
+                    _buildDivider(),
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      child:ThemeConsumer(
+                          child: GestureDetector(
+                            child: Row(children: [
+                              Icon(
+                                Icons.school,
+                                color: active,
+
+                              ),
+                              SizedBox(width: 10.0),
+                              Text('School',
+                                  style: tStyle
+                              ),
+                              Spacer(),
+
+                            ],),
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => ThemeConsumer(child:TeacherHome() ),
+                                ),
+                              );
+                            },
+                          )),
 
                     ),
                     _buildDivider(),

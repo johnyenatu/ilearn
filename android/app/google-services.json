@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "369712073095",
+    "firebase_url": "https://ilearn-3654d.firebaseio.com",
+    "project_id": "ilearn-3654d",
+    "storage_bucket": "ilearn-3654d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:369712073095:android:4aba297158adbd1966eb22",
+        "android_client_info": {
+          "package_name": "com.instantsystems.ilearn"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "369712073095-1nrvug6cqrfikidureqhtmjmb9je1ti9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtxzlOTSzCABp1VuteBftFC-OVq5j3kc8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "369712073095-1nrvug6cqrfikidureqhtmjmb9je1ti9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
