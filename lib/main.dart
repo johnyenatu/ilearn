@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_boom_menu/flutter_boom_menu.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:ilearn/HomePage.dart';
 import 'package:ilearn/localization/app_translations.dart';
 import 'package:ilearn/localization/application.dart';
 import 'package:ilearn/localization/appt_translations_delegate.dart';
+import 'package:ilearn/pages/school/shool.dart';
 import 'package:ilearn/pages/student/StudentHome.dart';
 import 'package:ilearn/pages/student/StudentHome.dart';
 import 'package:ilearn/pages/teacher/TeacherHome.dart';
@@ -17,13 +19,27 @@ import 'package:flutter/rendering.dart';
 void main() => runApp(MyApp());
 
 
-
 class MyApp extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        theme: ThemeData(primarySwatch: Colors.orange),
+        debugShowCheckedModeBanner: false,
+        home: SchoolPage());
+  }
+}
+
+class MyApp1 extends StatefulWidget {
+  @override
+  _MyAppState1 createState() => _MyAppState1();
 
 }
-class _MyAppState extends State<MyApp> {
+class _MyAppState1 extends State<MyApp1> {
   AppTranslationsDelegate _newLocaleDelegate;
 
 @override
@@ -58,7 +74,7 @@ class _MyAppState extends State<MyApp> {
             RouteLink.ROUTE_STUDENT:(context)=>ThemeConsumer(child: StudentHome()),
           },
           home: ThemeConsumer(
-            child: HomePage(
+            child: HomePage1(
             ),
           ),
           localizationsDelegates: [
@@ -81,12 +97,12 @@ class _MyAppState extends State<MyApp> {
 
 }
 
-class HomePage extends StatefulWidget {
+class HomePage1 extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage1> {
 
 
   static final Color primaryColor = Color(0xffFD6592);
@@ -120,6 +136,7 @@ class _HomePageState extends State<HomePage> {
   }
   BoomMenu buildBoomMenu() {
     return BoomMenu(
+      fabAlignment: Alignment.topRight,
         animatedIcon: AnimatedIcons.menu_close,
         animatedIconTheme: IconThemeData(size: 22.0),
         //child: Icon(Icons.add),
