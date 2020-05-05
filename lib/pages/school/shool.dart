@@ -86,7 +86,7 @@ class _SchoolPageState extends State<SchoolPage> {
 
                             ),
                             onPressed: (){
-                              _schoolBloc.deleteSchoolSink.add(ModelSchool("${snapshot.data[index].name}"));
+                             // _schoolBloc.deleteSchoolSink.add(ModelSchool("${snapshot.data[index].name}"));
                             },
                           )
                       ),
