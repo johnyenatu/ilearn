@@ -35,11 +35,7 @@ await _repository.getSchoolsList()
   });
  return   schoolList;
   }
-//List<ModelSchool> schoolList=  mapToList();
-// List<ModelSchool> schoolList=[
-//   ModelSchool('bdu','0913971996'),
-//   _repository.getSchoolsList()
-// ];
+
 final _schoolListStreamController=StreamController<List<ModelSchool>>();  
 
 final _schoolListAddController=StreamController<ModelSchool>();
@@ -64,8 +60,6 @@ SchoolBloc(){
   _schoolListAddController.stream.listen(_addSchool);
   _schoolListDeleteController.stream.listen(_deleteSchool);
 }
-
-
 _addSchool(ModelSchool  school) async{
  await _repository.addSchool(school.name);
   //  getSchoolList();
@@ -82,7 +76,6 @@ updateList();
 }
 void updateList() async{
   schoolList=[];
-
     await _repository.getSchoolsList()
         .then((QuerySnapshot snapshot) async{
       snapshot.documents.toList().forEach((f)=>{
@@ -98,5 +91,6 @@ void updateList() async{
 void dispose(){
   _schoolListStreamController.close();
 }
+
 
 }

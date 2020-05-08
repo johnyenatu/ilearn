@@ -2,6 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:ilearn/bloc/school_bloc.dart';
 import 'package:ilearn/model/model_school.dart';
+import 'package:ilearn/pages/school/grade.dart';
+import 'package:theme_provider/theme_provider.dart';
 
 
  
@@ -21,6 +23,12 @@ class _SchoolPageState extends State<SchoolPage> {
      _schoolBloc.dispose();
     super.dispose();
     
+  }
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
   }
 
   @override
@@ -86,7 +94,14 @@ class _SchoolPageState extends State<SchoolPage> {
 
                             ),
                             onPressed: (){
-                             // _schoolBloc.deleteSchoolSink.add(ModelSchool("${snapshot.data[index].name}"));
+                         // _schoolBloc.deleteSchoolSink.add(ModelSchool("${snapshot.data[index].name}"));
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => ThemeConsumer(child:GradePage() ),
+                            ),
+                          );
+                        //  Navigator.push(context, route)
                             },
                           )
                       ),

@@ -5,6 +5,7 @@ import 'package:ilearn/HomePage.dart';
 import 'package:ilearn/localization/app_translations.dart';
 import 'package:ilearn/localization/application.dart';
 import 'package:ilearn/localization/appt_translations_delegate.dart';
+import 'package:ilearn/pages/school/grade.dart';
 import 'package:ilearn/pages/school/shool.dart';
 import 'package:ilearn/pages/student/StudentHome.dart';
 import 'package:ilearn/pages/student/StudentHome.dart';
@@ -18,28 +19,28 @@ import 'package:theme_provider/theme_provider.dart';
 import 'package:flutter/rendering.dart';
 void main() => runApp(MyApp());
 
+//
+//class MyApp extends StatefulWidget {
+//  @override
+//  _MyAppState createState() => _MyAppState();
+//}
+//
+//class _MyAppState extends State<MyApp> {
+//  @override
+//  Widget build(BuildContext context) {
+//    return MaterialApp(
+//        theme: ThemeData(primarySwatch: Colors.orange),
+//        debugShowCheckedModeBanner: false,
+//        home: HomePage());
+//  }
+//}
 
 class MyApp extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();
-}
 
+}
 class _MyAppState extends State<MyApp> {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-        theme: ThemeData(primarySwatch: Colors.orange),
-        debugShowCheckedModeBanner: false,
-        home: SchoolPage());
-  }
-}
-
-class MyApp1 extends StatefulWidget {
-  @override
-  _MyAppState1 createState() => _MyAppState1();
-
-}
-class _MyAppState1 extends State<MyApp1> {
   AppTranslationsDelegate _newLocaleDelegate;
 
 @override
@@ -103,8 +104,6 @@ class HomePage1 extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage1> {
-
-
   static final Color primaryColor = Color(0xffFD6592);
   static final Color bgColor = Color(0xffF9E0E3);
   static final Color secondaryColor = Color(0xff324558);
@@ -127,9 +126,7 @@ class _HomePageState extends State<HomePage1> {
       drawer:_buildDrawer(context),// _buildDrawer(context),
    //   drawer:
         appBar: AppBar(title: Text('iLearn')),
-        body: Center(
-          child: Text('Welcome to iLearn'),
-        ),
+        body: GradePage(),
        floatingActionButton: buildBoomMenu(),
       )
     );
